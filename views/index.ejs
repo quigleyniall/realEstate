@@ -1,0 +1,158 @@
+<% include ./partials/header %>
+<style>
+.topnav {
+  overflow: hidden;
+  background-color: white;
+  opacity: 1;
+}
+.topnav a {
+  color: #566062;
+}
+.thumbnail{
+  float: left;
+}
+.topnav a:hover {
+  background-color: #566062;
+  color: white;
+}
+.brand:hover {
+  color: #566062 !important;
+}
+</style>
+
+<div class="container side-background" style="padding:0;">
+  <div class="col-md-3 col-sm-12" style="padding: 0;">
+    <form class="filter-form"action="/property/<%=body.request.listing_type%>"method="post">
+    <div class="form-group">
+        <input id="search" type="text"name="location" class="inputheight form-control"placeholder="Location" required/>
+    </div>
+    <div class="price">
+      <p>Price <i class="pull-right fas fa-caret-down"></i><i class="pull-right fas fa-caret-up"></i></p>
+    </div>
+      <span class="price-search">
+        <label for="min">Min:</label>
+        <input type="number" name="min" id="min">
+        <label for="max">Max:</label>
+        <input type="number" name="max" id="max">
+        <div id="slider-range"></div>
+      </span>
+    <div class="bedroom">
+      <p>Bedrooms <i class="pull-right fas fa-caret-down"></i><i class="pull-right fas fa-caret-up"></i></p>
+    </div>
+      <span class="bedroom-search">
+        <label for="bedroom_min">Min:</label>
+        <input type="number" name="bedroom_min" id="bedroom_min">
+        <label for="bedroom_max">Max:</label>
+        <input type="number" name="bedroom_max" id="bedroom_max">
+      </span>
+    <div class="bathroom">
+      <p>Bathrooms <i class="pull-right fas fa-caret-down"></i><i class="pull-right fas fa-caret-up"></i></p>
+    </div>
+      <span class="bathroom-search">
+          <label for="bathroom_min">Min:</label>
+          <input type="number" name="bathroom_min" id="bathroom_min">
+          <label for="bathroom_max">Max:</label>
+          <input type="number" name="bathroom_max" id="bathroom_max">
+      </span>
+    <div class="extras">
+      <p>Extras <i class="pull-right fas fa-caret-down"></i><i class="pull-right fas fa-caret-up"></i></p>
+    </div>
+      <span class="extras-checkbox">
+        <div class="checkbox">
+          <label><input type="checkbox" id="sauna" name="sauna" value="sauna">Sauna</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" id="swimming_pool" name="swimming_pool" value="swimming_pool">Swimming Pool</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" id="conservatory" name="conservatory" value="conservatory">Conservatory</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" id="studio" name="studio" value="studio">Studio</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" id="garage" name="garage" value="garage">Garage</label>
+        </div>
+      </span>
+      <div class="type">
+        <p>Type <i class="pull-right fas fa-caret-down"></i><i class="pull-right fas fa-caret-up"></i></p>
+      </div>
+      <span class="type-checkbox">
+      <div class="checkbox">
+        <label><input type="checkbox" id="apartment" name="apartment" value="apartment">Apartment</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" id="bungalow" name="bungalow" value="bungalow">Bungalow</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" id="cottage" name="cottage" value="cottage">Cottage</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" id="semi_detached" name="semi_detached" value="semi_detached">Semi Detached</label>
+      </div>
+    </span>
+      <div class="form-group">
+      <input id="submit" type='submit' class="submit-form form-control btn btn-primary" value="search"/>
+    </div>
+  </form>
+</div>
+  <div class="col-md-9 col-sm-12" style="padding:0;">
+    <div class="search-results col-sm-12 col-xs-12">
+      <div class="row flex first">
+        <% if(body.response.listings.length > 9){ %>
+        <% for(var i=0;i< 9; i++){ %>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="thumbnail">
+              <a href="<%=body.response.listings[i].lister_url%>" target="_blank"><img src="<%=body.response.listings[i].img_url%>"></a>
+              <div class="caption">
+                <p><%= body.response.listings[i].price_formatted %></p>
+                <p><%= body.response.listings[i].title.substring(0,55)%></p>
+                <p><%= body.response.listings[i].bedroom_number%> bedroom</p>
+              </div>
+            </div>
+          </div>
+          <% } } %>
+      </div>
+      <% if(body.response.listings.length >= 18){ %>
+      <div class="row flex second">
+        <% for(var i=9;i< 18; i++){ %>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="thumbnail">
+              <a href="<%=body.response.listings[i].lister_url%>" target="_blank"><img src="<%=body.response.listings[i].img_url%>"></a>
+              <div class="caption">
+                <p><%= body.response.listings[i].price_formatted %></p>
+                <p><%= body.response.listings[i].title.substring(0,55)%></p>
+                <p><%= body.response.listings[i].bedroom_number%> bedroom</p>
+              </div>
+            </div>
+          </div>
+          <% }} %>
+      </div>
+      <% if(body.response.listings.length > 18){ %>
+      <div class="row flex third">
+        <% for(var i=18;i < body.response.listings.length; i++){ %>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="thumbnail">
+              <a href="<%=body.response.listings[i].lister_url%>" target="_blank"><img src="<%=body.response.listings[i].img_url%>"></a>
+              <div class="caption">
+                <p><%= body.response.listings[i].price_formatted %></p>
+                <p><%= body.response.listings[i].title.substring(0,55)%></p>
+                <p><%= body.response.listings[i].bedroom_number%> bedroom</p>
+              </div>
+            </div>
+          </div>
+          <% } } %>
+      </div>
+      <div class="col-md-offset-5 col-md-2 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
+          <span class="pagination"><i id="first-icon"class="fas fa-circle"></i>
+            <% if(body.response.listings.length>=18){ %>
+            <i id="second-icon"class="fas fa-circle"></i>
+            <% } %>
+            <% if(body.response.listings.length>18){ %>
+            <i id="third-icon"class="fas fa-circle"></i></span>
+            <% }%>
+      </div>
+    </div>
+  </div>
+</div>
+<% include ./partials/footer %>

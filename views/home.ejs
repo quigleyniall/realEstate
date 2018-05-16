@@ -1,0 +1,34 @@
+<% include ./partials/header %>
+<div class="contain">
+
+<div class='search'>
+  <h2>Find Your Perfect Home!</h2>
+<form action="/property/buy" method="post">
+  <input id="search" type="text"name="location" class="form-control searchbar"placeholder="Search Location"/>
+  <input id="submit" type='submit' class="btn submit btn-primary searchbtn" value="search"/>
+</div>
+</div>
+
+<div class="container-home">
+  <div class="col-md-12 col-xs-12">
+    <div class="header">
+      <h2>Featured Homes</h2>
+    </div>
+  </div>
+    <% for(var i=0;i< 8; i++){ %>
+      <div class="col-md-3 col-sm-6 col-xs-12" style="display:flex;flex-wrap: wrap;">
+        <div class="thumbnail">
+          <a href="<%=body.response.listings[i].lister_url%>" target="_blank"><img src="<%=body.response.listings[i].img_url%>"></a>
+          <div class="caption">
+            <p><%= body.response.listings[i].price_formatted %></p>
+            <p><%= body.response.listings[i].title%></p>
+            <p><%= body.response.listings[i].bedroom_number%> bedroom</p>
+          </div>
+        </div>
+      </div>
+      <% } %>
+  </div>
+
+</div>
+
+<% include ./partials/footer %>

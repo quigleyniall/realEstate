@@ -1,0 +1,21 @@
+{
+  "name": "realestate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "real.js",
+  "dependencies": {
+    "ejs": "^2.5.8",
+    "express": "^4.16.3",
+    "git": "^0.1.5",
+    "heroku": "^7.0.16",
+    "mysql": "^2.15.0",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node real.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

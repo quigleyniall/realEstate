@@ -1,0 +1,37 @@
+<% include ./partials/header %>
+<style>
+.container {
+  margin: 0 auto;
+  width: 40%;
+  background-color: #ccc;
+  padding: 50px;
+}
+input, label{
+  display: block;
+  padding: 5px;
+  width: 100%;
+}
+#sign-up{
+  margin-top: 5px;
+  float: right;
+}
+.topnav {
+      overflow: hidden;
+      background-color: #333;
+      opacity: 1;
+}
+.thumbnail{
+  float: left;
+}
+</style>
+<div class="container">
+  <h1>Log In</h1>
+<form method='post' action = '/log-in'>
+  <label for="username">Username</label>
+  <input id="username"type = 'text' name ='username' placeholder='Username' required/>
+  <label for="password">Password</label>
+  <input id="password"type = 'password' name = 'password' placeholder = 'Password' required/>
+  <button id='sign-up'>Log in</button>
+</form>
+</div>
+<% include ./partials/footer %>
